@@ -1,10 +1,26 @@
 import { useEffect, useRef, useState } from "react";
 import './App.css'
-import icon from './assets/piep_icon.jpg'
+import icon from './assets/img/icons/piep_logo.png';
 
 function App() {
   const [moreOpen, setMoreOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const dropdownRef = useRef(null);
+
+
+  const images = import.meta.glob('./assets/img/tagaytay/*.{jpg,jpeg,png}', {
+    eager: true,
+    import: 'default',
+  });
+  const [imageList, setImageList] = useState(Object.values(images));
+  
+  // const imageList = Object.values(images);
+
+
+  useEffect(() => {
+    console.log(imageList);  
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -15,6 +31,15 @@ function App() {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % imageList.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -83,11 +108,26 @@ function App() {
 
       </header>
 
+      
+
       <section className="relative">
         <img
           src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070"
           className="w-full h-[700px] object-cover"
         />
+
+        <div className="absolute inset-0">
+          {imageList.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt=""
+              className={`absolute inset-0 w-full h-[700px] object-cover transition-opacity duration-1000 ${
+                index === currentSlide ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
+        </div>
 
         {/* white fade */}
         <div className="absolute inset-0 hidden md:block">
