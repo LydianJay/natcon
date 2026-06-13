@@ -150,7 +150,7 @@ function App() {
               </h1>
 
               <p className="mt-4 md:mt-6 text-sm md:text-lg lg:text-3xl leading-relaxed font-medium text-black italic">
-                Mula Talampas Hanggang Baybayin:
+                Mula Kabundukan Hanggang Bahura:
                 Matatag na Pagpaplanong Espasyal sa Gitna ng Mabilis na Urbanisasyon
               </p>
 
