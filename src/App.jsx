@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import './App.css'
 import icon from './assets/img/icons/piep_logo.png';
+import DevModal from "./misc/DevModal";
+
 
 function App() {
   const [moreOpen, setMoreOpen] = useState(false);
@@ -60,15 +62,16 @@ function App() {
           </div>
 
           <nav className="hidden md:flex gap-6 font-medium">
-            <a href="index.html" className="hover:text-green-900">Home</a>
-            <a href="pages/about.html" className="hover:text-green-900">About PAGTIBAY 2026</a>
-            <a href="pages/program.html" className="hover:text-green-900">Program & CPD</a>
-            <a href="pages/speakers.html" className="hover:text-green-900">Speakers</a>
-            <a href="pages/contact.html" className="hover:text-green-900">Delegates Advisory</a>
-            <a href="pages/contact.html" className="hover:text-green-900">Sponsors/Exhibitors</a>
+            <a href="#" className="hover:text-green-900">Home</a>
+            <a href="#" className="hover:text-green-900">About PAGTIBAY 2026 <span>▾</span></a>
+            <a href="#" className="hover:text-green-900">Invitation/Registration <span>▾</span></a>
+            <a href="#" className="hover:text-green-900">Program & CPD</a>
+            <a href="#" className="hover:text-green-900">Speakers</a>
+            <a href="#" className="hover:text-green-900">Delegates Advisory</a>
+            <a href="#" className="hover:text-green-900">Sponsors/Exhibitors</a>
           </nav>
 
-          <div className="relative" ref={dropdownRef}>
+          <div className="relative hidden md:block" ref={dropdownRef}>
             <button
               onClick={() => setMoreOpen(!moreOpen)}
               className="hover:text-green-900 flex items-center gap-1"
@@ -97,11 +100,12 @@ function App() {
         </div>
 
         <div id="mobileMenu" className="hidden md:hidden px-4 pb-4 bg-white">
-          <a href="index.html" className="block py-2">Home</a>
-          <a href="pages/about.html" className="block py-2">About</a>
-          <a href="pages/program.html" className="block py-2">Program</a>
-          <a href="pages/speakers.html" className="block py-2">Speakers</a>
-          <a href="pages/contact.html" className="block py-2">Contact</a>
+          <a href="#" className="block py-2">Home</a>
+          <a href="#" className="block py-2">About PAGTIBAY 2026</a>
+          <a href="#" className="block py-2">Invitation/Registration</a>
+          <a href="#" className="block py-2">Program & CPD</a>
+          <a href="#" className="block py-2">Delegates Advisory</a>
+          <a href="#" className="block py-2">Sponsors/Exhibitors</a>
         </div>
 
         
@@ -360,6 +364,8 @@ function App() {
 
         </div>
       </footer>
+
+      <DevModal/>
     </>
   )
 }
