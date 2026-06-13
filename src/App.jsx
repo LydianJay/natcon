@@ -154,6 +154,34 @@ function App() {
                 Matatag na Pagpaplanong Espasyal sa Gitna ng Mabilis na Urbanisasyon
               </p>
 
+              <p className="mt-4 text-md text-green-900">
+                <span className="mx-1">
+                  <i class="fa-regular fa-calendar-days"></i>
+                </span>
+                November 9-13 2026
+              </p>
+
+              <p className="mt-4 text-md text-green-900">
+                <span className="mx-1">
+                  <i class="fa-regular fa-calendar-days"></i>
+                </span>
+                Convention Proper: November 10-12, 2026
+              </p>
+
+              <p className="mt-4 text-md text-green-900">
+                <span className="mx-1">
+                  <i class="fa-solid fa-location-pin"></i>
+                </span>
+                Taal Vista Hotel, Tagaytay City, Cavite
+              </p>
+
+              <p className="mt-4 text-md text-green-900">
+                <span className="mx-1">
+                  <i class="fa-solid fa-user-group"></i>
+                </span>
+                HOST: PIEP Cavite Chapter
+              </p>
+
               <div className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4">
                 <button className="bg-green-900 px-5 py-3 rounded-lg hover:bg-green-800">
                   Register Now
