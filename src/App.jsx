@@ -96,9 +96,6 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    console.log(imageList);  
-  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -156,7 +153,7 @@ function App() {
                     className="block px-4 py-3 hover:bg-gray-100 hover:text-green-500"
                   >
                     <span className="mx-1">
-                      <i class="fa-regular fa-envelope"></i>
+                      <i className="fa-regular fa-envelope"></i>
                     </span>
                     Invitation
                   </a>
@@ -166,7 +163,7 @@ function App() {
                     className="block px-4 py-3 hover:bg-gray-100 hover:text-green-500"
                   >
                     <span className="mx-1">
-                      <i class="fa-solid fa-file-lines"></i>
+                      <i className="fa-solid fa-file-lines"></i>
                     </span>
                     Registration
                   </a>
@@ -192,34 +189,34 @@ function App() {
               <div className="absolute right-0 mt-2 w-56 bg-white border rounded-lg shadow-lg overflow-hidden text-green-900">
                 <a href="#" className="block px-4 py-2 hover:bg-gray-100">
                   <span className="mx-1">
-                    <i class="fa-solid fa-bed"></i>
+                    <i className="fa-solid fa-bed"></i>
                   </span>
                   Accomodation
                 </a>
                 <a href="#" className="block px-4 py-2 hover:bg-gray-100">
                   <span className="mx-1">
-                    <i class="fa-solid fa-bus-simple"></i>
+                    <i className="fa-solid fa-bus-simple"></i>
                   </span>
                   Transport & Accessability
                 </a>
 
                 <a href="#" className="block px-4 py-2 hover:bg-gray-100">
                   <span className="mx-1">
-                    <i class="fa-solid fa-landmark"></i>
+                    <i className="fa-solid fa-landmark"></i>
                   </span>
                   Tours
                 </a>
 
                 <a href="#" className="block px-4 py-2 hover:bg-gray-100">
                   <span className="mx-1">
-                    <i class="fa-solid fa-briefcase-medical"></i>
+                    <i className="fa-solid fa-briefcase-medical"></i>
                   </span>
                   Safety & Emergency
                 </a>
 
                 <a href="#" className="block px-4 py-2 hover:bg-gray-100">
                   <span className="mx-1">
-                    <i class="fa-solid fa-circle-question"></i>
+                    <i className="fa-solid fa-circle-question"></i>
                   </span>
                   FAQ
                 </a>
@@ -227,14 +224,14 @@ function App() {
 
                 <a href="#" className="block px-4 py-2 hover:bg-gray-100">
                   <span className="mx-1">
-                    <i class="fa-solid fa-hand-holding-hand"></i>
+                    <i className="fa-solid fa-hand-holding-hand"></i>
                   </span>
                   Contact/Help Desk
                 </a>
 
                 <a href="#" className="block px-4 py-2 hover:bg-gray-100">
                   <span className="mx-1">
-                    <i class="fa-solid fa-download"></i>
+                    <i className="fa-solid fa-download"></i>
                   </span>
                   Downloads
                 </a>
@@ -309,28 +306,28 @@ function App() {
 
               <p className="mt-4 text-md text-green-900">
                 <span className="mx-1">
-                  <i class="fa-regular fa-calendar-days"></i>
+                  <i className="fa-regular fa-calendar-days"></i>
                 </span>
                 November 9-13 2026
               </p>
 
               <p className="mt-4 text-md text-green-900">
                 <span className="mx-1">
-                  <i class="fa-regular fa-calendar-days"></i>
+                  <i className="fa-regular fa-calendar-days"></i>
                 </span>
                 Convention Proper: November 10-12, 2026
               </p>
 
               <p className="mt-4 text-md text-green-900">
                 <span className="mx-1">
-                  <i class="fa-solid fa-location-pin"></i>
+                  <i className="fa-solid fa-location-pin"></i>
                 </span>
                 Taal Vista Hotel, Tagaytay City, Cavite
               </p>
 
               <p className="mt-4 text-md text-green-900">
                 <span className="mx-1">
-                  <i class="fa-solid fa-user-group"></i>
+                  <i className="fa-solid fa-user-group"></i>
                 </span>
                 HOST: PIEP Cavite Chapter
               </p>
@@ -393,7 +390,7 @@ function App() {
           <div className="w-full aspect-video">
             <iframe
               className="w-full h-full rounded-lg"
-              src="https://www.youtube.com/embed/live_stream?channel=CHANNEL_ID"
+              src="https://www.youtube.com/embed/UEmJm1tnRKs"
               frameBorder="0"
               allowFullScreen
             />
@@ -454,7 +451,7 @@ function App() {
                 {/* node */}
                 <div className="w-16 h-16 rounded-full border-2 border-green-700 bg-white flex items-center justify-center z-10">
                   <span className="text-green-700 text-xl">
-                    <i class="fa-solid fa-plane-up"></i>
+                    <i className="fa-solid fa-plane-up"></i>
                   </span>
                 </div>
 
@@ -466,7 +463,7 @@ function App() {
               <div className="flex flex-col items-center text-center relative">
                 <div className="w-16 h-16 rounded-full border-2 border-green-700 bg-white flex items-center justify-center z-10">
                   <span className="text-green-700 text-xl">
-                    <i class="fa-solid fa-id-card-clip"></i>
+                    <i className="fa-solid fa-id-card-clip"></i>
                   </span>
                 </div>
 
@@ -478,7 +475,7 @@ function App() {
               <div className="flex flex-col items-center text-center relative">
                 <div className="w-16 h-16 rounded-full border-2 border-green-700 bg-white flex items-center justify-center z-10">
                   <span className="text-green-700 text-xl">
-                    <i class="fa-solid fa-people-group"></i>
+                    <i className="fa-solid fa-people-group"></i>
                   </span>
                 </div>
 
@@ -490,7 +487,7 @@ function App() {
               <div className="flex flex-col items-center text-center relative">
                 <div className="w-16 h-16 rounded-full border-2 border-green-700 bg-white flex items-center justify-center z-10">
                   <span className="text-green-700 text-xl">
-                    <i class="fa-solid fa-chalkboard"></i>
+                    <i className="fa-solid fa-chalkboard"></i>
                   </span>
                 </div>
 
@@ -502,7 +499,7 @@ function App() {
               <div className="flex flex-col items-center text-center relative">
                 <div className="w-16 h-16 rounded-full border-2 border-green-700 bg-white flex items-center justify-center z-10">
                   <span className="text-green-700 text-xl">
-                    <i class="fa-solid fa-suitcase-rolling"></i>
+                    <i className="fa-solid fa-suitcase-rolling"></i>
                   </span>
                 </div>
 
@@ -533,7 +530,7 @@ function App() {
             {/* Item 1 */}
             <div className="text-center space-y-3">
               <div className="flex justify-center text-green-700 text-4xl">
-                <i class="fa-solid fa-graduation-cap"></i>
+                <i className="fa-solid fa-graduation-cap"></i>
               </div>
               <h3 className="font-semibold text-lg text-gray-800">
                 CPD Learning
@@ -546,7 +543,7 @@ function App() {
             {/* Item 2 */}
             <div className="text-center space-y-3">
               <div className="flex justify-center text-green-700 text-4xl">
-                <i class="fa-solid fa-comments"></i>
+                <i className="fa-solid fa-comments"></i>
               </div>
               <h3 className="font-semibold text-lg text-gray-800">
                 National Dialogue
@@ -559,7 +556,7 @@ function App() {
             {/* Item 3 */}
             <div className="text-center space-y-3">
               <div className="flex justify-center text-green-700 text-4xl">
-                <i class="fa-solid fa-gear"></i>
+                <i className="fa-solid fa-gear"></i>
               </div>
               <h3 className="font-semibold text-lg text-gray-800">
                 Technical Exchange
@@ -572,7 +569,7 @@ function App() {
             {/* Item 4 */}
             <div className="text-center space-y-3">
               <div className="flex justify-center text-green-700 text-4xl">
-                <i class="fa-solid fa-user-group"></i>
+                <i className="fa-solid fa-user-group"></i>
               </div>
               <h3 className="font-semibold text-lg text-gray-800">
                 Professional Networking
