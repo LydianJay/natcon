@@ -149,7 +149,7 @@ function App() {
               {registrationOpen && (
                 <div className="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg rounded-lg text-green-900 border z-50">
                   <a
-                    href="/invitation"
+                    href="#"
                     className="block px-4 py-3 hover:bg-gray-100 hover:text-green-500"
                   >
                     <span className="mx-1">
@@ -159,7 +159,7 @@ function App() {
                   </a>
 
                   <a
-                    href="/registration"
+                    href="#"
                     className="block px-4 py-3 hover:bg-gray-100 hover:text-green-500"
                   >
                     <span className="mx-1">
