@@ -3,13 +3,12 @@ import './App.css'
 import icon from './assets/img/icons/piep-logo.webp';
 import caviteIcon from './assets/img/icons/piep_cavite.png';
 import DevModal from "./misc/DevModal";
-
+import { Link } from "react-router";
 
 function App() {
   const [moreOpen, setMoreOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [registrationOpen, setRegistrationOpen] = useState(false);
-
   const dropdownRef = useRef(null);
 
 
@@ -158,15 +157,16 @@ function App() {
                     Invitation
                   </a>
 
-                  <a
-                    href="#"
+                  <Link
+                    to="/registration"
                     className="block px-4 py-3 hover:bg-gray-100 hover:text-green-500"
+                    
                   >
                     <span className="mx-1">
                       <i className="fa-solid fa-file-lines"></i>
                     </span>
                     Registration
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
