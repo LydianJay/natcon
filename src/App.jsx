@@ -6,39 +6,40 @@ import DevModal from "./misc/DevModal";
 import { Link } from "react-router";
 
 function App() {
-  const [moreOpen, setMoreOpen] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [moreOpen, setMoreOpen]                 = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen]     = useState(false);
+  const [currentSlide, setCurrentSlide]         = useState(0);
   const [registrationOpen, setRegistrationOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef                             = useRef(null);
   
 
 
 
   const advisories = [
-    {
-      id: 1,
-      month: 'Nov',
-      day: '9',
-      year: '2026',
-      title: 'Test Title',
-      description: '[Test Content] - This is a test content please disregard - Website is currently in development',
-    }, 
-    {
-      id: 2,
-      month: 'Nov',
-      day: '4',
-      year: '2026',
-      title: 'Lorem Ipsum',
-      description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.',
-    },
-    {
-      id: 3,
-      month: 'Nov',
-      day: '3',
-      year: '2026',
-      title: 'Lorem Ipsum',
-      description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.',
-    },
+    // {
+    //   id: 1,
+    //   month: 'Nov',
+    //   day: '9',
+    //   year: '2026',
+    //   title: 'Test Title',
+    //   description: '[Test Content] - This is a test content please disregard - Website is currently in development',
+    // }, 
+    // {
+    //   id: 2,
+    //   month: 'Nov',
+    //   day: '4',
+    //   year: '2026',
+    //   title: 'Lorem Ipsum',
+    //   description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.',
+    // },
+    // {
+    //   id: 3,
+    //   month: 'Nov',
+    //   day: '3',
+    //   year: '2026',
+    //   title: 'Lorem Ipsum',
+    //   description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.',
+    // },
   ];
 
   const images = import.meta.glob('./assets/img/tagaytay/*.{jpg,jpeg,png}', {
@@ -140,6 +141,8 @@ function App() {
             <div className="relative">
               <button
                 onClick={() => setRegistrationOpen(!registrationOpen)}
+                onMouseEnter={() => setRegistrationOpen(true)}
+                onMouseLeave={() => setRegistrationOpen(false)}
                 className="hover:text-green-900 flex items-center gap-1"
               >
                 Invitation/Registration <span>▾</span>
@@ -150,6 +153,7 @@ function App() {
                   <a
                     href="https://docs.google.com/forms/d/e/1FAIpQLSfttMz8x6Rd3_IPMiDfPMzMi9Zrywplf0XviMeplDZnU8VCSQ/viewform?usp=dialog"
                     className="block px-4 py-3 hover:bg-gray-100 hover:text-green-500"
+                    target="_blank"
                   >
                     <span className="mx-1">
                       <i className="fa-regular fa-envelope"></i>
@@ -240,12 +244,12 @@ function App() {
             )}
           </div>
 
-          <button className="md:hidden text-2xl text-black-600" id="menuBtn">
+          <button className="md:hidden text-2xl text-black-600" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             ☰
           </button>
         </div>
 
-        <div id="mobileMenu" className="hidden md:hidden px-4 pb-4 bg-white">
+        <div  className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden px-4 pb-4 bg-white`}>
           <a href="#" className="block py-2">Home</a>
           <a href="#" className="block py-2">About PAGTIBAY 2026</a>
           <a href="#" className="block py-2">Invitation/Registration</a>
@@ -586,60 +590,70 @@ function App() {
 
 
 
-      {/* <section className="mx-auto px-6 py-12 font-sans bg-white">
-        <div className="flex justify-between items-baseline mb-6 border-b border-gray-100 pb-4">
-          <h2 className="text-xl font-bold tracking-wide text-[#0b3d1d] uppercase font-serif">
-            Latest Advisories
-          </h2>
-          <a 
-            href="#all-advisories" 
-            className="text-sm font-semibold text-[#0b3d1d] hover:underline inline-flex items-center gap-1"
-          >
-            View All Advisories <span className="text-xs">→</span>
-          </a>
-        </div>
-
+      <section className="mx-auto px-6 py-12 font-sans bg-white">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {advisories.map((item) => (
-            <div 
-              key={item.id} 
-              className="flex items-start gap-4 p-5 bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
-            >
-              <div className="bg-[#052d14] text-white rounded-lg px-3 py-2.5 flex flex-col items-center justify-center min-w-[64px] shadow-sm">
-                <span className="text-[10px] font-bold tracking-wider text-emerald-400 uppercase">
-                  {item.month}
-                </span>
-                <span className="text-2xl font-extrabold leading-none my-1">
-                  {item.day}
-                </span>
-                <span className="text-[10px] font-medium tracking-wide text-gray-300">
-                  {item.year}
-                </span>
+          {advisories.length > 0 ? (
+            advisories.map((item) => (
+              <div 
+                key={item.id} 
+                className="flex items-start gap-4 p-5 bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+              >
+                <div className="bg-[#052d14] text-white rounded-lg px-3 py-2.5 flex flex-col items-center justify-center min-w-[64px] shadow-sm">
+                  <span className="text-[10px] font-bold tracking-wider text-emerald-400 uppercase">
+                    {item.month}
+                  </span>
+                  <span className="text-2xl font-extrabold leading-none my-1">
+                    {item.day}
+                  </span>
+                  <span className="text-[10px] font-medium tracking-wide text-gray-300">
+                    {item.year}
+                  </span>
+                </div>
+
+                <div className="flex-1 flex flex-col justify-between h-full min-h-[90px]">
+                  <div>
+                    <h3 className="font-bold text-gray-800 text-sm leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1.5 text-xs text-gray-500 line-clamp-3 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-3">
+                    <a 
+                      href={`#advisory-${item.id}`} 
+                      className="text-xs font-bold text-[#0b3d1d] hover:underline inline-flex items-center gap-1"
+                    >
+                      Read more <span className="text-[10px]">→</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="col-span-full flex flex-col items-center justify-center text-center py-16 px-6 border border-dashed border-gray-200 rounded-xl bg-gray-50">
+              
+              {/* Icon */}
+              <div className="text-5xl mb-3 opacity-70">
+                <i class="fa-solid fa-bullhorn"></i>
               </div>
 
-              <div className="flex-1 flex flex-col justify-between h-full min-h-[90px]">
-                <div>
-                  <h3 className="font-bold text-gray-800 text-sm leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1.5 text-xs text-gray-500 line-clamp-3 leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-                
-                <div className="mt-3">
-                  <a 
-                    href={`#advisory-${item.id}`} 
-                    className="text-xs font-bold text-[#0b3d1d] hover:underline inline-flex items-center gap-1"
-                  >
-                    Read more <span className="text-[10px]">→</span>
-                  </a>
-                </div>
-              </div>
+              {/* Title */}
+              <h3 className="text-lg font-semibold text-gray-700">
+                No Advisories Yet
+              </h3>
+
+              {/* Description */}
+              <p className="text-sm text-gray-500 mt-2 max-w-md">
+                There are currently no latest advisories posted. Please check back later for updates and announcements.
+              </p>
+
+              
             </div>
-          ))}
+          )}
         </div>
-      </section> */}
+      </section>
 
 
 
@@ -697,7 +711,7 @@ function App() {
             <h4 className="text-yellow-500 font-bold tracking-wider text-xs mb-3 uppercase">
               Host
             </h4>
-            <div className="flex flex-col items-center gap-2">
+            <div className="flex flex-col items-center gap-2" onClick={() => window.location.href = "https://www.facebook.com/PIEPCaviteChapter/"}>
               <div className="w-16 h-16 rounded-full flex items-center justify-center text-xs bg-white text-black">
                 <img src={caviteIcon} className="w-full h-full object-cover" />
               </div>

@@ -376,6 +376,7 @@ export default function RegistrationForm() {
                     type="submit"
                     disabled={loading}
                     className="w-full bg-green-700 hover:bg-green-800 disabled:opacity-50 text-white py-3 rounded-xl font-medium"
+                    
                 >
                     {loading ? "Submitting..." : "Register Now"}
                 </button>
