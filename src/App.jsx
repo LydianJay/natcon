@@ -10,7 +10,7 @@ function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [registrationOpen, setRegistrationOpen] = useState(false);
   const dropdownRef = useRef(null);
-
+  
 
 
 
@@ -148,7 +148,7 @@ function App() {
               {registrationOpen && (
                 <div className="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg rounded-lg text-green-900 border z-50">
                   <a
-                    href="#"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfttMz8x6Rd3_IPMiDfPMzMi9Zrywplf0XviMeplDZnU8VCSQ/viewform?usp=dialog"
                     className="block px-4 py-3 hover:bg-gray-100 hover:text-green-500"
                   >
                     <span className="mx-1">
@@ -158,7 +158,7 @@ function App() {
                   </a>
 
                   <Link
-                    to="/registration"
+                    to=""
                     className="block px-4 py-3 hover:bg-gray-100 hover:text-green-500"
                     
                   >
@@ -586,8 +586,7 @@ function App() {
 
 
 
-      <section className="mx-auto px-6 py-12 font-sans bg-white">
-        {/* Header Row */}
+      {/* <section className="mx-auto px-6 py-12 font-sans bg-white">
         <div className="flex justify-between items-baseline mb-6 border-b border-gray-100 pb-4">
           <h2 className="text-xl font-bold tracking-wide text-[#0b3d1d] uppercase font-serif">
             Latest Advisories
@@ -600,14 +599,12 @@ function App() {
           </a>
         </div>
 
-        {/* Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {advisories.map((item) => (
             <div 
               key={item.id} 
               className="flex items-start gap-4 p-5 bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
             >
-              {/* Calendar Date Badge */}
               <div className="bg-[#052d14] text-white rounded-lg px-3 py-2.5 flex flex-col items-center justify-center min-w-[64px] shadow-sm">
                 <span className="text-[10px] font-bold tracking-wider text-emerald-400 uppercase">
                   {item.month}
@@ -620,7 +617,6 @@ function App() {
                 </span>
               </div>
 
-              {/* Content Details */}
               <div className="flex-1 flex flex-col justify-between h-full min-h-[90px]">
                 <div>
                   <h3 className="font-bold text-gray-800 text-sm leading-snug">
@@ -631,7 +627,6 @@ function App() {
                   </p>
                 </div>
                 
-                {/* Action Link */}
                 <div className="mt-3">
                   <a 
                     href={`#advisory-${item.id}`} 
@@ -644,7 +639,7 @@ function App() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
 
 
@@ -727,7 +722,7 @@ function App() {
         </div>
       </footer>
 
-      <DevModal/>
+      {/* <DevModal/> */}
     </>
   )
 }
