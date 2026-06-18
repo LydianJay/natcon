@@ -142,14 +142,14 @@ function App() {
               <button
                 onClick={() => setRegistrationOpen(!registrationOpen)}
                 onMouseEnter={() => setRegistrationOpen(true)}
-                onMouseLeave={() => setRegistrationOpen(false)}
+                
                 className="hover:text-green-900 flex items-center gap-1"
               >
                 Invitation/Registration <span>▾</span>
               </button>
 
               {registrationOpen && (
-                <div className="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg rounded-lg text-green-900 border z-50">
+                <div className="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg rounded-lg text-green-900 border z-50" onMouseLeave={() => setRegistrationOpen(false)}>
                   <a
                     href="https://docs.google.com/forms/d/e/1FAIpQLSfttMz8x6Rd3_IPMiDfPMzMi9Zrywplf0XviMeplDZnU8VCSQ/viewform?usp=dialog"
                     className="block px-4 py-3 hover:bg-gray-100 hover:text-green-500"
