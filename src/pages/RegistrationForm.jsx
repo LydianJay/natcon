@@ -5,16 +5,48 @@ import api from "../services/api";
 
 
 export default function RegistrationForm() {
-    const [selectedBank, setSelectedBank]   = useState("");
-    const [loading, setLoading]             = useState(false);
-    const [error, setError]                 = useState('');
-    const [isStudent, setIsStudent]         = useState(false);
+    
+    
 
 
+    const REGISTRATION_TYPES = {
+        ENP: "enp",
+        STUDENT: "student",
+        NON_ENP: "non_enp",
+    };
+
+    const REG_UI = [
+        {
+            id: 'enp',
+            title: 'ENP',
+            text: 'Regular Registration Fee',
+            icon: 'fa-solid fa-user-tie',
+        },
+        {
+            id: 'non_enp',
+            title: 'Non-ENP',
+            text: 'Regular Registration Fee',
+            icon: 'fa-solid fa-user',
+        },
+        {
+            id: 'student',
+            title: 'Student',
+            text: 'Discounted Fee',
+            icon: 'fa-solid fa-graduation-cap',
+        }
+    ];
+
+    const STUDENT_DISCOUNT                      = 0.1;
+    const [selectedBank, setSelectedBank]       = useState("");
+    const [loading, setLoading]                 = useState(false);
+    const [error, setError]                     = useState('');
+    const [isStudent, setIsStudent]             = useState(false);
+    const [regType, setRegType]                 = useState(REGISTRATION_TYPES.ENP);
+    // const [discountAmount, setDiscountAmount]
     const BASE_FEE          = 8000;
-    const STUDENT_DISCOUNT  = 0.2;
-    const discountAmount    = isStudent ? BASE_FEE * STUDENT_DISCOUNT : 0;
+    const discountAmount    = (regType == REGISTRATION_TYPES.STUDENT) ? BASE_FEE * STUDENT_DISCOUNT : 0;
     const totalAmount       = BASE_FEE - discountAmount;
+    
 
     const [formData, setFormData] = useState({
         fname: "",
@@ -27,6 +59,7 @@ export default function RegistrationForm() {
         chapter: "",
         prc_no: "",
         expiry_date: "",
+        regist_date: "",
         is_student: false,
         student_img: null,
         payment_ref: "",
@@ -34,6 +67,7 @@ export default function RegistrationForm() {
     });
 
     const chapter = [
+        "N/A",
         "Albay",
         "Bataan",
         "Batangas",
@@ -188,14 +222,66 @@ export default function RegistrationForm() {
                     </section>
 
                     <section>
-                        <h2 className="section-title">
+                        <h2 className="section-title mb-2">
                             Registration Type
                         </h2>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-                            {/* Professional */}
-                            <button
+                            {
+                                REG_UI.map((c) => (
+                                    <button
+                                        key={c.id}
+                                        type="button"
+                                        onClick={() => {
+                                            setRegType(c.id);
+                                            // setFormData({
+                                            //     ...formData,
+                                            //     is_student: false
+                                            // });
+                                        }}
+                                        className={`group relative border rounded-xl p-5 text-left transition-all duration-200
+                                            hover:shadow-md hover:border-gray-400
+                                            ${regType == c.id
+                                                ? "border-green-600 bg-green-50 shadow-sm"
+                                                : "border-gray-200 bg-white"
+                                            }`}
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <div className={`text-2xl transition ${
+                                                regType == c.id  ? "text-green-700" : "text-gray-400"
+                                            }`}>
+                                            </div>
+
+                                            <div>
+                                                <h3 className="font-semibold text-gray-800">
+                                                    <span className="mx-1">
+                                                        <i className={`${c.icon} text-gray-800`}></i>
+                                                    </span>
+                                                    {c.title}
+                                                </h3>
+                                                <p className="text-sm text-gray-500">
+                                                    {c.text}
+                                                </p>
+
+                                                {c.id == REGISTRATION_TYPES.STUDENT && (
+                                                    <span className="inline-block mt-1 text-xs font-medium text-green-700 bg-green-100 px-2 py-0.5 rounded-full">
+                                                        {STUDENT_DISCOUNT * 100}% OFF
+                                                    </span>
+                                                )}
+                                                
+                                            </div>
+                                        </div>
+
+                                        {regType == c.id && (
+                                            <div className="absolute top-3 right-3 w-2.5 h-2.5 bg-green-600 rounded-full" />
+                                        )}
+                                    </button>
+                                ))
+                            }
+
+
+                            {/* <button
                                 type="button"
                                 onClick={() => {
                                     setIsStudent(false);
@@ -222,7 +308,7 @@ export default function RegistrationForm() {
                                             <span className="mx-1">
                                                 <i className="fa-solid fa-user-tie text-gray-800"></i>
                                             </span>
-                                            Professional
+                                            Professional - ENP
                                         </h3>
                                         <p className="text-sm text-gray-500">
                                             Regular registration fee
@@ -230,13 +316,49 @@ export default function RegistrationForm() {
                                     </div>
                                 </div>
 
-                                {/* active indicator */}
                                 {!isStudent && (
                                     <div className="absolute top-3 right-3 w-2.5 h-2.5 bg-green-600 rounded-full" />
                                 )}
                             </button>
 
-                            {/* Student */}
+
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setIsStudent(false);
+                                    setFormData({
+                                        ...formData,
+                                        is_student: false
+                                    });
+                                }}
+                                className={`group relative border rounded-xl p-5 text-left transition-all duration-200
+                                    hover:shadow-md hover:border-gray-400
+                                    `}
+                            >
+                                <div className="flex items-center gap-3">
+                                    <div className={`text-2xl transition ${
+                                        !isStudent ? "text-green-700" : "text-gray-400"
+                                    }`}>
+                                    </div>
+
+                                    <div>
+                                        <h3 className="font-semibold text-gray-800">
+                                            <span className="mx-1">
+                                                <i class="fa-solid fa-user text-gray-800"></i>
+                                            </span>
+                                            Professional - Non ENP
+                                        </h3>
+                                        <p className="text-sm text-gray-500">
+                                            Non-ENP registration fee
+                                        </p>
+                                    </div>
+                                </div>
+
+                              
+                            </button>
+
+
+
                             <button
                                 type="button"
                                 onClick={() => {
@@ -277,11 +399,10 @@ export default function RegistrationForm() {
                                     </div>
                                 </div>
 
-                                {/* active indicator */}
                                 {isStudent && (
                                     <div className="absolute top-3 right-3 w-2.5 h-2.5 bg-green-600 rounded-full" />
                                 )}
-                            </button>
+                            </button> */}
 
                         </div>
                     </section>
@@ -289,7 +410,7 @@ export default function RegistrationForm() {
                     
 
 
-                    {isStudent ? (
+                    {regType == REGISTRATION_TYPES.STUDENT ? (
                             <section className="border border-green-200 bg-green-50 rounded-xl p-5">
                                 <div className="flex items-center gap-2 mb-4">
                                     <span className="text-xl">
@@ -314,7 +435,7 @@ export default function RegistrationForm() {
                                         type="file"
                                         name="student_image"
                                         accept="image/*,.pdf"
-                                        required={isStudent}
+                                        required={regType == REGISTRATION_TYPES.STUDENT}
                                         onChange={(e) =>
                                             setFormData({
                                                 ...formData,
@@ -333,7 +454,7 @@ export default function RegistrationForm() {
 
                         (
                             <section>
-                                <h2 className="section-title">Professional Information</h2>
+                                <h2 className="section-title mb-2">Professional Information</h2>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <Select
@@ -341,8 +462,9 @@ export default function RegistrationForm() {
                                         name="chapter"
                                         options={chapter}
                                     />
-                                    <Input label="PRC Number" name="prc_no" />
-                                    <Input label="PRC Expiry Date" name="expiry_date" type="date" />
+                                    <Input label="PRC Number" name="prc_no" text="Leave blank if not applicable" value={formData.prc_no} onChange={handleChange} />
+                                    <Input label="PRC Registration Date" name="regist_date" text="Leave blank if not applicable" type="date" value={formData.regist_date} onChange={handleChange} />
+                                    <Input label="PRC Expiry Date" name="expiry_date" text="Leave blank if not applicable" type="date" value={formData.expiry_date} onChange={handleChange} />
                                 </div>
                             </section>
                         )
@@ -363,7 +485,7 @@ export default function RegistrationForm() {
                                 <span>₱{BASE_FEE.toLocaleString()}</span>
                             </div>
 
-                            {isStudent && (
+                            {regType == REGISTRATION_TYPES.STUDENT && (
                                 <div className="flex justify-between text-green-700">
                                     <span>Student Discount</span>
                                     <span>-₱{discountAmount.toLocaleString()}</span>
@@ -457,13 +579,18 @@ function Input({
     label,
     name,
     type = "text",
+    text = "",
     value,
     onChange
 }) {
     return (
         <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
+                
                 {label}
+                <span className="mx-1 text-gray-400 text-sm">
+                    {text}
+                </span>
             </label>
 
             <input
@@ -507,4 +634,3 @@ function Select({ label,
     );
 }
 
-/* SECTION TITLE STYLE (optional utility class idea) */
