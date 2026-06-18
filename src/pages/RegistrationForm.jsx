@@ -27,11 +27,58 @@ export default function RegistrationForm() {
         chapter: "",
         prc_no: "",
         expiry_date: "",
-
+        is_student: false,
+        student_img: null,
         payment_ref: "",
         payment_img: null,
-        student_id: null,
     });
+
+    const chapter = [
+        "Albay",
+        "Bataan",
+        "Batangas",
+        "Bohol",
+        "Bukidnon",
+        "Cagayan",
+        "Camarines",
+        "Caraga",
+        "Catanduanes",
+        "Cavite",
+        "Cebu",
+        "Cotabato City-Maguindanao",
+        "Davao",
+        "Davao del Sur-Occidental",
+        "Eastern Visayas",
+        "Ilocos Sur",
+        "Kingdom of Saudi Arabia",
+        "La Union",
+        "Laguna",
+        "Masbate",
+        "Misamis Oriental",
+        "Misamis Occidental",
+        "National Capital Region",
+        "National Capital Region-North",
+        "National Capital Region-South",
+        "National Capital Region-West",
+        "Negros Occidental",
+        "Negros Oriental",
+        "Northern Luzon",
+        "Northern Mindanao",
+        "Nueva Ecija- Aurora",
+        "Nueva Vizcaya-Quirino",
+        "Occidental Mindoro",
+        "Olongapo-Zambales",
+        "Oriental Mindoro",
+        "Palawan",
+        "Pampanga",
+        "Qatar",
+        "Quezon - Marinduque",
+        "SoCCSKSarGen",
+        "Sorsogon",
+        "Tarlac",
+        "Western Visayas",
+        "ZamPenBaSulTa"
+        ];
 
     const handleChange = (e) => {
         setFormData({
@@ -75,17 +122,17 @@ export default function RegistrationForm() {
             payload.append("total_amount", totalAmount);
             payload.append("selected_bank", selectedBank);
 
-            const res = await api.post(
-                "/register",
-                payload,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
-            );
+            // const res = await api.post(
+            //     "/register",
+            //     payload,
+            //     {
+            //         headers: {
+            //             "Content-Type": "multipart/form-data",
+            //         },
+            //     }
+            // );
 
-            window.location.href = res.data.url;
+            // window.location.href = res.data.url;
 
         } catch (err) {
             console.error(err);
@@ -96,7 +143,7 @@ export default function RegistrationForm() {
                 setError("Registration failed.");
             }
         } finally {
-            setLoading(false);
+            // setLoading(false);
         }
     };
         
@@ -150,7 +197,13 @@ export default function RegistrationForm() {
                             {/* Professional */}
                             <button
                                 type="button"
-                                onClick={() => setIsStudent(false)}
+                                onClick={() => {
+                                    setIsStudent(false);
+                                    setFormData({
+                                        ...formData,
+                                        is_student: false
+                                    });
+                                }}
                                 className={`group relative border rounded-xl p-5 text-left transition-all duration-200
                                     hover:shadow-md hover:border-gray-400
                                     ${!isStudent
@@ -166,6 +219,9 @@ export default function RegistrationForm() {
 
                                     <div>
                                         <h3 className="font-semibold text-gray-800">
+                                            <span className="mx-1">
+                                                <i className="fa-solid fa-user-tie text-gray-800"></i>
+                                            </span>
                                             Professional
                                         </h3>
                                         <p className="text-sm text-gray-500">
@@ -183,7 +239,13 @@ export default function RegistrationForm() {
                             {/* Student */}
                             <button
                                 type="button"
-                                onClick={() => setIsStudent(true)}
+                                onClick={() => {
+                                    setIsStudent(true);
+                                    setFormData({
+                                        ...formData,
+                                        is_student: true
+                                    });
+                                }}
                                 className={`group relative border rounded-xl p-5 text-left transition-all duration-200
                                     hover:shadow-md hover:border-green-400
                                     ${isStudent
@@ -199,6 +261,9 @@ export default function RegistrationForm() {
 
                                     <div>
                                         <h3 className="font-semibold text-gray-800">
+                                            <span className="mx-1">
+                                                <i className="fa-solid fa-graduation-cap text-gray-800"></i>
+                                            </span>
                                             Student
                                         </h3>
 
@@ -221,14 +286,15 @@ export default function RegistrationForm() {
                         </div>
                     </section>
 
-                    {/* PROFESSIONAL */}
                     
 
 
                     {isStudent ? (
                             <section className="border border-green-200 bg-green-50 rounded-xl p-5">
                                 <div className="flex items-center gap-2 mb-4">
-                                    <span className="text-xl">🎓</span>
+                                    <span className="text-xl">
+                                        <i className="fa-solid fa-graduation-cap text-green-900"></i>
+                                    </span>
                                     <div>
                                         <h3 className="font-semibold text-green-800">
                                             Student Verification
@@ -246,19 +312,20 @@ export default function RegistrationForm() {
 
                                     <input
                                         type="file"
-                                        name="student_id"
+                                        name="student_image"
                                         accept="image/*,.pdf"
                                         required={isStudent}
                                         onChange={(e) =>
                                             setFormData({
                                                 ...formData,
-                                                student_id: e.target.files[0]
+                                                student_image: e.target.files[0]
                                             })
                                         }
                                         className="w-full border rounded-lg px-3 py-2
                                         file:mr-3 file:px-4 file:py-2
                                         file:bg-green-600 file:text-white
                                         file:border-0 file:rounded-md"
+                                        
                                     />
                                 </div>
                             </section>
@@ -272,7 +339,7 @@ export default function RegistrationForm() {
                                     <Select
                                         label="Chapter"
                                         name="chapter"
-                                        options={["Region I", "Region II", "Region III"]}
+                                        options={chapter}
                                     />
                                     <Input label="PRC Number" name="prc_no" />
                                     <Input label="PRC Expiry Date" name="expiry_date" type="date" />
