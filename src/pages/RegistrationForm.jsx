@@ -10,8 +10,10 @@ export default function RegistrationForm() {
     const records = useLoaderData();
 
     useEffect(()=>{
-        console.log(records);
-    },[records]);
+        console.table(records);
+
+
+    }, [records])
 
     const REGISTRATION_TYPES = {
         ENP: "enp",
@@ -43,11 +45,12 @@ export default function RegistrationForm() {
     const STUDENT_DISCOUNT                      = 0.1;
     const [loading, setLoading]                 = useState(false);
     const [error, setError]                     = useState('');
+    const [msg, setMsg]                         = useState(null);
     const [regType, setRegType]                 = useState(REGISTRATION_TYPES.ENP);
     // const [discountAmount, setDiscountAmount]
 
     
-    const BASE_FEE          = records.base_fee; // This data should be fetch from backend instead of client side since they migth just change the date
+    const BASE_FEE          = records?.base_fee ?? 0; // This data should be fetched from backend instead of client side since they might just change the date
     const discountAmount    = (regType == REGISTRATION_TYPES.STUDENT) ? BASE_FEE * STUDENT_DISCOUNT : 0;
     const totalAmount       = BASE_FEE - discountAmount;
     
@@ -125,8 +128,8 @@ export default function RegistrationForm() {
 
 
     // this should be fetch from server
-    const banks = records.banks;
-    const [selectedBank, setSelectedBank]       = useState(records.banks[0].name);
+    const banks                                 = records?.banks ?? [];
+    const [selectedBank, setSelectedBank]       = useState(records?.banks[0].name ?? []);
     const selectedBankData = banks.find(b => b.name === selectedBank);
 
 
@@ -161,6 +164,7 @@ export default function RegistrationForm() {
 
             console.log(res);
             // window.location.href = res.data.url;
+            setMsg('Registration Success!');
 
         } catch (err) {
             // console.error(err);
@@ -212,8 +216,8 @@ export default function RegistrationForm() {
                                 <Input label="Last Name *" name="lname" value={formData.lname} onChange={handleChange} required={true} />
                                 <Input label="Middle Name" name="mname" value={formData.mname} onChange={handleChange} />
                                 <Input label="Extension (Jr., Sr., III)" value={formData.ext} onChange={handleChange} name="ext" />
-                                <Input label="Contact Number" name="contactno" value={formData.contactno} onChange={handleChange} type="tel" required={true} />
-                                <Input label="Email" name="email" type="email" value={formData.email} onChange={handleChange} required={true} />
+                                <Input label="Contact Number *" name="contactno" value={formData.contactno} onChange={handleChange} type="tel" required={true} />
+                                <Input label="Email *" name="email" type="email" value={formData.email} onChange={handleChange} required={true} />
                                 
                             </div>
                         </section>
@@ -334,9 +338,9 @@ export default function RegistrationForm() {
                                             onChange={handleChange}
                                             value={formData.chapter}
                                         />
-                                        <Input label="PRC Number" name="prc_no" text="Leave blank if not applicable" value={formData.prc_no} onChange={handleChange} />
-                                        <Input label="PRC Registration Date" name="reg_date" text="Leave blank if not applicable" type="date" value={formData.reg_date} onChange={handleChange} />
-                                        <Input label="PRC Expiry Date" name="expiry_date" text="Leave blank if not applicable" type="date" value={formData.expiry_date} onChange={handleChange} />
+                                        <Input label="PRC Number" name="prc_no"  value={formData.prc_no} onChange={handleChange} />
+                                        <Input label="PRC Registration Date" name="reg_date"  type="date" value={formData.reg_date} onChange={handleChange} />
+                                        <Input label="PRC Expiry Date" name="expiry_date"  type="date" value={formData.expiry_date} onChange={handleChange} />
                                     </div>
                                 </section>
                             )
@@ -401,7 +405,9 @@ export default function RegistrationForm() {
                             {/* BANK DETAILS DISPLAY */}
                             {selectedBankData && (
                                 <div className="bg-gray-50 border rounded-xl p-4 mb-4 whitespace-pre-line text-sm">
-                                    {selectedBankData.details}
+                                    {selectedBankData.details.map((d, index) => {
+                                        return <p key={index}>{d}</p>
+                                    })}
                                 </div>
                             )}
 
@@ -464,6 +470,37 @@ export default function RegistrationForm() {
                             <div className="flex justify-end">
                                 <button
                                     onClick={() => setError(null)}
+                                    className="px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800"
+                                >
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+
+                {msg && (
+                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                        <div className="bg-white rounded-xl shadow-xl max-w-md w-full mx-4 p-6">
+                            <div className="flex items-center gap-3 mb-4">
+                                <i className="fa-regular fa-circle-check text-green-500 text-2xl"></i>
+                                <h2 className="text-lg font-semibold text-green-700">
+                                    Registration Status
+                                </h2>
+                            </div>
+
+                            <p className="text-gray-600 mb-6">
+                                {msg}
+                            </p>
+
+                            <div className="flex justify-end">
+                                <button
+                                    onClick={() => {
+                                        setError(null);
+                                        setMsg(null);
+                                        window.location.href = import.meta.env.VITE_BASE_URL;
+                                    }}
                                     className="px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800"
                                 >
                                     Close
