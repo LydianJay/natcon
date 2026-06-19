@@ -11,12 +11,18 @@ import { RouterProvider } from "react-router/dom";
 import App from './App.jsx'
 import RegistrationPage from './pages/RegistrationForm.jsx';
 
+import regisLoader from './loaders/RegistrationLoader.js';
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
-  { path: "registration", element: <RegistrationPage /> }
+  { 
+    path: "registration",
+    loader:  regisLoader,
+    element: <RegistrationPage /> 
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
