@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import './App.css'
 import icon from './assets/img/icons/piep-logo.webp';
 import caviteIcon from './assets/img/icons/piep_cavite.png';
-import DevModal from "./misc/DevModal";
 import { Link } from "react-router";
 
 function App() {
@@ -178,7 +177,7 @@ function App() {
             <a href="#" className="hover:text-green-900">Program & CPD</a>
             <a href="#" className="hover:text-green-900">Speakers</a>
             <a href="#" className="hover:text-green-900">Delegates Advisory</a>
-            <a href="#" className="hover:text-green-900">Sponsors/Exhibitors</a>
+            <Link to="/exhibitors" className="hover:text-green-900">Sponsors/Exhibitors</Link>
           </nav>
 
           <div className="relative hidden md:block" ref={dropdownRef}>

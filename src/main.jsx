@@ -10,6 +10,7 @@ import { RouterProvider } from "react-router/dom";
 
 import App from './App.jsx'
 import RegistrationPage from './pages/RegistrationForm.jsx';
+import Exhibitors from './pages/ExhibitorsPerspectus.jsx';
 
 import regisLoader from './loaders/RegistrationLoader.js';
 
@@ -22,7 +23,12 @@ const router = createBrowserRouter([
     path: "registration",
     loader:  regisLoader,
     element: <RegistrationPage /> 
-  }
+  },
+  {
+    path: "exhibitors",
+    element: <Exhibitors />,
+  },
+
 ]);
 
 createRoot(document.getElementById('root')).render(
