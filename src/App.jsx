@@ -177,7 +177,7 @@ function App() {
             <a href="#" className="hover:text-green-900">Program & CPD</a>
             <a href="#" className="hover:text-green-900">Speakers</a>
             <a href="#" className="hover:text-green-900">Delegates Advisory</a>
-            <Link to="/exhibitors" className="hover:text-green-900">Sponsors/Exhibitors</Link>
+            <Link to="/exhibitors" className="hover:text-green-900" target="_blank">Sponsors/Exhibitors</Link>
           </nav>
 
           <div className="relative hidden md:block" ref={dropdownRef}>
