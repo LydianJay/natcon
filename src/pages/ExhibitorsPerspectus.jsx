@@ -22,7 +22,7 @@ export default function SponsorsPage() {
         "First-priority booth location in a high-traffic area",
         "Convention ID, kits, and meals for two representatives",
         "Regular inside full-page advertisement",
-        "20-minute sponsored product or service presentation slot",
+        "10-minute sponsored product or service presentation slot",
         "Name and logo on sponsor tarpaulin, sponsor wall, digital sponsor board, and AV sponsor loop",
         "Verbal acknowledgement during convention sessions plenary or social program segments",
         "Inclusion in approved NatCon publicity materials",
