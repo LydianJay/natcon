@@ -11,6 +11,8 @@ import { RouterProvider } from "react-router/dom";
 import App from './App.jsx'
 import RegistrationPage from './pages/RegistrationForm.jsx';
 import Exhibitors from './pages/ExhibitorsPerspectus.jsx';
+import ReservationForm from './pages/ReservationForm.jsx';
+
 
 import regisLoader from './loaders/RegistrationLoader.js';
 
@@ -27,6 +29,12 @@ const router = createBrowserRouter([
   {
     path: "exhibitors",
     element: <Exhibitors />,
+  },
+
+  {
+    path: "exhibitors/reservation",
+    element: <ReservationForm />,
+    loader:  regisLoader,
   },
 
 ]);

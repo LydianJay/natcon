@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+import piepQR from "../assets/img/icons/piep_qr.png";
+import { Link } from "react-router";
+
+
 export default function SponsorsPage() {
   const packages = [
     {
@@ -222,7 +226,7 @@ export default function SponsorsPage() {
             <div className="bg-white rounded-[2rem] shadow-xl p-10 text-center">
 
               <h2 className="text-4xl font-black text-green-900">
-                SCAN TO RESERVE
+                SCAN TO DOWNLOAD CONTRACT
               </h2>
 
               <div className="h-1 bg-green-600 rounded my-5"></div>
@@ -232,14 +236,14 @@ export default function SponsorsPage() {
               </h3>
 
               <div className="mt-8 flex justify-center">
-                <div className="w-72 h-72 bg-gray-100 rounded-xl border flex items-center justify-center">
-                  QR CODE HERE
+                <div className="w-72 h-72 bg-gray-100 p-0 rounded-xl border flex items-center justify-center">
+                  <img src={piepQR} className="object-cover" />
                 </div>
               </div>
 
-              <button className="mt-8 bg-green-900 text-white px-8 py-4 rounded-xl hover:bg-green-800">
-                Reserve This Package
-              </button>
+              <Link to={"/exhibitors/reservation"} target="_blank" className="mt-8 bg-green-900 text-white px-4 py-4 rounded-lg font-bold hover:bg-green-800">
+                Reservation Form
+              </Link>
 
             </div>
 
