@@ -174,7 +174,7 @@ export default function ReservationForm(){
                         {
                             chapter == 'N/A' && (
                                 <div className="grid grid-cols-1 gap-4 my-2">
-                                    <Input label="Others Specify" text="if the soliciting chapter is not listed above, specify. if already selected above, leave blank" name="mname" />
+                                    <Input label="Others Specify" name="mname" />
                                 </div>
                             )
                         }
