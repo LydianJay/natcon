@@ -9,27 +9,19 @@ export default function ReservationForm(){
     const [loading, setLoading]                 = useState(false);
     const [error, setError]                     = useState('');
     const [msg, setMsg]                         = useState(null);
+    const [chapter, setChapter]                 = useState('N/A');
     const records = useLoaderData();
 
-    useEffect(()=>{
-        console.table(records);
+    // useEffect(()=>{
+    //     console.table(records);
 
 
-    }, [records]);
+    // }, [records]);
 
     const [formData, setFormData] = useState({
-        fname: "",
-        lname: "",
-        mname: "",
-        ext: "",
-        contactno: "",
-        email: "",
 
         chapter: "",
-        prc_no: "",
         expiry_date: "",
-        reg_date: "",
-        student_img: null,
         payment_ref: "",
         payment_img: null,
     });
@@ -75,7 +67,7 @@ export default function ReservationForm(){
 
     const [tierType, setTierType]                 = useState(TIERS.PLATINUM);
 
-    const chapter = [
+    const chapters = [
         "N/A",
         "Albay",
         "Bataan",
@@ -155,30 +147,38 @@ export default function ReservationForm(){
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <Input label="Sponsor Company Name *" name="fname" required={true}/>
                             <Input label="Representative's Name *" name="lname" required={true} />
-                            <Input label="Landline/ContactNo" name="mname" />
+                            <Input label="Landline/Contact No" name="mname" />
                             
                         </div>
                     </section>
 
 
                     <section>
-                        <h2 className="section-title">Chaper Information</h2>
+                        <h2 className="section-title">Soliciting Chapter</h2>
 
                         <div className="grid grid-cols-1 gap-4">
                             <Select
                                 label="Chapter"
                                 name="chapter"
-                                options={chapter}
-                                // onChange={handleChange}
-                                // value={formData.chapter}
+                                options={chapters}
+                                onChange={(e) => {
+                                    handleChange(e);
+                                    // setChapter(e)
+                                    // console.log(e.target.value);
+                                    setChapter(e.target.value);
+                                }}
+                                value={formData.chapter}
                             />
                             
                         </div>
-
-                        <div className="grid grid-cols-1 gap-4 my-2">
-                            <Input label="Others Specify" text="if the soliciting chapter is not listed above, specify. if already selected above, leave blank" name="mname" />
-                            
-                        </div>
+                        {
+                            chapter == 'N/A' && (
+                                <div className="grid grid-cols-1 gap-4 my-2">
+                                    <Input label="Others Specify" text="if the soliciting chapter is not listed above, specify. if already selected above, leave blank" name="mname" />
+                                </div>
+                            )
+                        }
+                        
                     </section>
 
 

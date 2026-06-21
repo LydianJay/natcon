@@ -37,12 +37,12 @@ export default function RegistrationForm() {
         {
             id: 'student',
             title: 'Student',
-            text: 'Discounted Fee',
+            text: 'Student Fee',
             icon: 'fa-solid fa-graduation-cap',
         }
     ];
 
-    const STUDENT_DISCOUNT                      = 0.1;
+    const STUDENT_DISCOUNT                      = records?.discount ?? 0.1;
     const [loading, setLoading]                 = useState(false);
     const [error, setError]                     = useState('');
     const [msg, setMsg]                         = useState(null);
@@ -67,12 +67,22 @@ export default function RegistrationForm() {
         prc_no: "",
         expiry_date: "",
         reg_date: "",
+        office: "",
         student_img: null,
         payment_ref: "",
         payment_img: null,
     });
 
+    const offices = [
+        "National Agency",
+        "GOCC",
+        "LGU",
+        "Private",
+        "Academe Private or Public",
+    ];
+
     const chapter = [
+        "N/A",
         "Albay",
         "Bataan",
         "Batangas",
@@ -205,7 +215,26 @@ export default function RegistrationForm() {
                         </div>
                     </div>
 
+                    
+
                     <div className="p-6 space-y-10">
+
+                        <div className="bg-amber-50 border-l-4 border-amber-500 rounded-lg p-4 flex items-start gap-3">
+                            <div className="text-amber-600 text-xl">
+                                <i className="fa-solid fa-clock"></i>
+                            </div>
+
+                            <div>
+                                <h3 className="font-semibold text-amber-800">
+                                    Early Bird Discount Available 🎉
+                                </h3>
+
+                                <p className="text-sm text-amber-700">
+                                    Register on or before <strong>October 1, 2026</strong> to enjoy
+                                    discounted convention fees.
+                                </p>
+                            </div>
+                        </div>
 
                         {/* PERSONAL */}
                         <section>
@@ -262,7 +291,7 @@ export default function RegistrationForm() {
                                                         {c.text}
                                                     </p>
 
-                                                    {c.id == REGISTRATION_TYPES.STUDENT && (
+                                                    {(c.id == REGISTRATION_TYPES.STUDENT && STUDENT_DISCOUNT > 0.001) && (
                                                         <span className="inline-block mt-1 text-xs font-medium text-green-700 bg-green-100 px-2 py-0.5 rounded-full">
                                                             {STUDENT_DISCOUNT * 100}% OFF
                                                         </span>
@@ -326,7 +355,7 @@ export default function RegistrationForm() {
                                 </section>
                             ) :
 
-                            (
+                            regType == REGISTRATION_TYPES.ENP && (
                                 <section>
                                     <h2 className="section-title mb-2">Professional Information</h2>
 
@@ -341,6 +370,13 @@ export default function RegistrationForm() {
                                         <Input label="PRC Number" name="prc_no"  value={formData.prc_no} onChange={handleChange} />
                                         <Input label="PRC Registration Date" name="reg_date"  type="date" value={formData.reg_date} onChange={handleChange} />
                                         <Input label="PRC Expiry Date" name="expiry_date"  type="date" value={formData.expiry_date} onChange={handleChange} />
+                                        <Select
+                                            label="Office"
+                                            name="office"
+                                            options={offices}
+                                            onChange={handleChange}
+                                            value={formData.office}
+                                        />
                                     </div>
                                 </section>
                             )
@@ -361,7 +397,7 @@ export default function RegistrationForm() {
                                     <span>₱{BASE_FEE.toLocaleString()}</span>
                                 </div>
 
-                                {regType == REGISTRATION_TYPES.STUDENT && (
+                                {(regType == REGISTRATION_TYPES.STUDENT && STUDENT_DISCOUNT > 0.001) && (
                                     <div className="flex justify-between text-green-700">
                                         <span>Student Discount</span>
                                         <span>-₱{discountAmount.toLocaleString()}</span>
@@ -576,7 +612,7 @@ function Select({ label,
                 className="w-full border border-gray-300 rounded-lg px-3 py-2
                 focus:ring-2 focus:ring-green-600 focus:border-green-600 outline-none"
             >
-                <option value="N/A">N/A</option>
+                {/* <option value="N/A">N/A</option> */}
                 {options.map((opt) => (
                     <option key={opt} value={opt}>
                         {opt}

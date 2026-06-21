@@ -251,10 +251,10 @@ function App() {
         <div  className={`${mobileMenuOpen ? 'block' : 'hidden'} md:hidden px-4 pb-4 bg-white`}>
           <a href="#" className="block py-2">Home</a>
           <a href="#" className="block py-2">About PAGTIBAY 2026</a>
-          <a href="#" className="block py-2">Invitation/Registration</a>
+          <Link to="https://docs.google.com/forms/d/e/1FAIpQLSfttMz8x6Rd3_IPMiDfPMzMi9Zrywplf0XviMeplDZnU8VCSQ/viewform?usp=dialog" target="_blank" className="block py-2">Invitation</Link>
           <a href="#" className="block py-2">Program & CPD</a>
           <a href="#" className="block py-2">Delegates Advisory</a>
-          <a href="#" className="block py-2">Sponsors/Exhibitors</a>
+          <Link to="/exhibitors" target="_blank" className="block py-2">Sponsors/Exhibitors</Link>
         </div>
 
         
@@ -336,9 +336,9 @@ function App() {
               </p>
 
               <div className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4">
-                <button className="bg-green-900 px-5 py-3 rounded-lg hover:bg-green-800">
+                <Link to="/registration" target="_blank" className="bg-green-900 px-5 py-3 rounded-lg hover:bg-green-800">
                   Register Now
-                </button>
+                </Link>
 
                 <button className="border border-green-900 text-green-900 px-5 py-3 rounded-lg hover:bg-white hover:text-black">
                   View Program
