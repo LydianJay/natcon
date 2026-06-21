@@ -325,7 +325,7 @@ function App() {
                 <span className="mx-1">
                   <i className="fa-solid fa-location-pin"></i>
                 </span>
-                Taal Vista Hotel, Tagaytay City, Cavite
+                Tagaytag City Velodrome, Tagaytay City, Cavite
               </p>
 
               <p className="mt-4 text-md text-green-900">

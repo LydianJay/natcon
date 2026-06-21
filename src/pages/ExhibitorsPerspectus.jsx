@@ -64,7 +64,7 @@ export default function SponsorsPage() {
         "Major corporate sponsors, planning and environmental firms, technology providers, national agencies, universities, and institutional partners.",
       inclusions: [
         "One booth area approx. 2m x 2m, subject to final venue layout",
-        "Standart booth location, after platinum and Diamond Sponsors",
+        "Standard booth location, after platinum and Diamond Sponsors",
         "Convention ID, kits, and meals for two representatives",
         "Half-page advertisement in the Souvenir Program",
         "Name and logo on sponsor tarpaulin, sponsor wall, or digital sponsor board",
