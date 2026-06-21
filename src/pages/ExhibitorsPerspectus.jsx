@@ -289,7 +289,7 @@ export default function SponsorsPage() {
                     <p className="text-yellow-600 font-bold">
                       VENUE
                     </p>
-                    <p>Taal Vista Hotel, Tagaytay City</p>
+                    <p>Tagaytag City Velodrome</p>
                   </div>
                 </div>
               </div>
