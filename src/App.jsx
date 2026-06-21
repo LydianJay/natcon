@@ -163,7 +163,7 @@ function App() {
                   <Link
                     to="/registration"
                     className="block px-4 py-3 hover:bg-gray-100 hover:text-green-500"
-                    
+                    target="_blank"
                   >
                     <span className="mx-1">
                       <i className="fa-solid fa-file-lines"></i>
