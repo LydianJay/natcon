@@ -9,11 +9,11 @@ export default function RegistrationForm() {
     
     const records = useLoaderData();
 
-    useEffect(()=>{
-        console.table(records);
+    // useEffect(()=>{
+    //     console.table(records);
 
 
-    }, [records])
+    // }, [records])
 
     const REGISTRATION_TYPES = {
         ENP: "enp",
@@ -47,7 +47,7 @@ export default function RegistrationForm() {
     const [error, setError]                     = useState('');
     const [msg, setMsg]                         = useState(null);
     const [regType, setRegType]                 = useState(REGISTRATION_TYPES.ENP);
-    // const [discountAmount, setDiscountAmount]
+    const [selChapter, setSelChapter]           = useState("N/A");      
 
     
     const BASE_FEE          = records?.base_fee ?? 0; // This data should be fetched from backend instead of client side since they might just change the date
@@ -219,20 +219,66 @@ export default function RegistrationForm() {
 
                     <div className="p-6 space-y-10">
 
-                        <div className="bg-amber-50 border-l-4 border-amber-500 rounded-lg p-4 flex items-start gap-3">
-                            <div className="text-amber-600 text-xl">
-                                <i className="fa-solid fa-clock"></i>
-                            </div>
+                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-green-600 to-green-700 text-white shadow-lg">
+    
+                            {/* Decorative Circle */}
+                            <div className="absolute -right-8 -top-8 w-32 h-32 bg-white/10 rounded-full"></div>
+                            <div className="absolute -right-4 bottom-0 w-20 h-20 bg-white/5 rounded-full"></div>
 
-                            <div>
-                                <h3 className="font-semibold text-amber-800">
-                                    Early Bird Discount Available 🎉
-                                </h3>
+                            <div className="relative p-6">
+                                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
 
-                                <p className="text-sm text-amber-700">
-                                    Register on or before <strong>October 1, 2026</strong> to enjoy
-                                    discounted convention fees.
-                                </p>
+                                    {/* Left Side */}
+
+                                    {
+                                        records.is_discounted && (
+                                            <div className="flex items-start gap-4">
+                                                <div>
+                                                    <div className="inline-flex items-center gap-2 bg-yellow-400 text-yellow-950 text-xs font-bold px-3 py-1 rounded-full mb-2 uppercase tracking-wide">
+                                                        Early Bird Promo
+                                                    </div>
+
+                                                    <h3 className="text-xl font-bold">
+                                                        Save ₱2,000 on Registration
+                                                    </h3>
+
+                                                    <p className="text-green-100 mt-1">
+                                                        Register on or before{" "}
+                                                        <span className="font-semibold text-white">
+                                                            September 30, 2026
+                                                        </span>{" "}
+                                                        and lock in the discounted rate.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                    
+
+                                    {/* Right Side */}
+                                    <div className="flex items-center gap-4">
+                                        <div className="text-center">
+                                            <p className="text-xs uppercase text-green-200">
+                                                Regular
+                                            </p>
+                                            <p className="text-lg line-through text-green-200">
+                                                ₱10,000
+                                            </p>
+                                        </div>
+
+                                        <div className="h-10 w-px bg-white/20"></div>
+
+                                        <div className="text-center">
+                                            <p className="text-xs uppercase text-green-200">
+                                                Early Bird
+                                            </p>
+                                            <p className="text-3xl font-extrabold text-yellow-300">
+                                                ₱8,000
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
 
@@ -364,9 +410,18 @@ export default function RegistrationForm() {
                                             label="Chapter"
                                             name="chapter"
                                             options={chapter}
-                                            onChange={handleChange}
+                                            onChange={(e)=>{
+                                                handleChange(e);
+                                                setSelChapter(e.target.value);
+                                            }}
                                             value={formData.chapter}
                                         />
+
+                                        {
+                                            selChapter == 'N/A' && (
+                                                <Input label="Others Specify" name="chapter"  value={formData.chapter} onChange={handleChange} />
+                                            )
+                                        }
                                         <Input label="PRC Number" name="prc_no"  value={formData.prc_no} onChange={handleChange} />
                                         <Input label="PRC Registration Date" name="reg_date"  type="date" value={formData.reg_date} onChange={handleChange} />
                                         <Input label="PRC Expiry Date" name="expiry_date"  type="date" value={formData.expiry_date} onChange={handleChange} />
@@ -393,7 +448,13 @@ export default function RegistrationForm() {
 
                             <div className="space-y-2">
                                 <div className="flex justify-between">
-                                    <span>Convention Fee</span>
+                                    {
+                                        records.is_discounted ? (
+                                            <span className="text-green-700">Early Bird Promo</span>
+                                        ) : (
+                                            <span>Convention Fee</span>
+                                        )
+                                    }
                                     <span>₱{BASE_FEE.toLocaleString()}</span>
                                 </div>
 
@@ -403,6 +464,7 @@ export default function RegistrationForm() {
                                         <span>-₱{discountAmount.toLocaleString()}</span>
                                     </div>
                                 )}
+                                
 
                                 <hr />
 
