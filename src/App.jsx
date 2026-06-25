@@ -635,7 +635,7 @@ function App() {
               
               {/* Icon */}
               <div className="text-5xl mb-3 opacity-70">
-                <i class="fa-solid fa-bullhorn"></i>
+                <i className="fa-solid fa-bullhorn"></i>
               </div>
 
               {/* Title */}
@@ -701,8 +701,8 @@ function App() {
               <li><a href="#home" className="hover:underline flex items-center gap-1"><span>•</span> Home</a></li>
               <li><a href="#about" className="hover:underline flex items-center gap-1"><span>•</span> About PAGTIBAY 2026</a></li>
               <li><a href="#program" className="hover:underline flex items-center gap-1"><span>•</span> Program & CPD</a></li>
-              <li><a href="#registration" className="hover:underline flex items-center gap-1"><span>•</span> Invitation/Registration</a></li>
-              <li><a href="#sponsors" className="hover:underline flex items-center gap-1"><span>•</span> Sponsors/Exhibitors</a></li>
+              <li><Link to="/registration" target="_blank" className="hover:underline flex items-center gap-1"><span>•</span> Registration</Link></li>
+              <li><Link to="/exhibitors" target="_blank" className="hover:underline flex items-center gap-1"><span>•</span> Sponsors/Exhibitors</Link></li>
             </ul>
           </div>
 

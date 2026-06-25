@@ -127,7 +127,7 @@ export default function RegistrationForm() {
         "Tarlac",
         "Western Visayas",
         "ZamPenBaSulTa"
-        ];
+    ];
 
     const handleChange = (e) => {
         setFormData({
@@ -174,7 +174,7 @@ export default function RegistrationForm() {
 
             console.log(res);
             // window.location.href = res.data.url;
-            setMsg('Registration Success!');
+            setMsg(res?.data?.msg);
 
         } catch (err) {
             // console.error(err);
